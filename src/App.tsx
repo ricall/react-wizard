@@ -1,16 +1,24 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-type Inputs = {
-  example: string;
-  exampleRequired: string;
-};
+const schema = yup
+  .object({
+    example: yup.string(),
+    exampleRequired: yup.string().required(),
+  })
+  .required();
+type Inputs = yup.InferType<typeof schema>;
 
 function App() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<Inputs>({
+    resolver: yupResolver(schema),
+  });
+
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
@@ -18,11 +26,7 @@ function App() {
       <div className="w-[32rem] flex flex-col gap-4 m-4 border border-black rounded-2xl p-4">
         <div className="gap-4 columns-2">
           <div className="text-right">Field One:</div>
-          <input
-            className="border border-black rounded px-2 w-full"
-            defaultValue="test"
-            {...register('example')}
-          />
+          <input className="border border-black rounded px-2 w-full" defaultValue="test" {...register('example')} />
         </div>
 
         <div className="gap-4 columns-2">
@@ -33,9 +37,7 @@ function App() {
               placeholder="some text is required here"
               {...register('exampleRequired', { required: true })}
             />
-            {errors.exampleRequired && (
-              <div className="text-sm text-red-400">This field is required</div>
-            )}
+            {errors.exampleRequired && <div className="text-sm text-red-400">This field is required</div>}
           </div>
         </div>
 
