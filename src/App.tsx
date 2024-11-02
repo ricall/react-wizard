@@ -17,6 +17,7 @@ function App() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
@@ -25,7 +26,7 @@ function App() {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} onReset={() => reset()}>
       <div className="w-[32rem] flex flex-col gap-4 m-4 border border-black rounded-2xl p-4">
         <div className="flex flex-col gap-1">
           <Label>Field One:</Label>
