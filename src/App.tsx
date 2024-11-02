@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '@/components/ui/button.tsx';
 
 const schema = yup
   .object({
@@ -41,7 +42,14 @@ function App() {
           </div>
         </div>
 
-        <input className="rounded border bg-gray-200" type="submit" />
+        <div className="flex flex-row justify-end gap-4">
+          <Button className="w-[5rem]" type="reset" variant="destructive">
+            Reset
+          </Button>
+          <Button className="w-[5rem]" type="submit" variant="default">
+            Submit
+          </Button>
+        </div>
       </div>
     </form>
   );
