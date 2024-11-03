@@ -60,6 +60,31 @@
   * {
     @apply border-border;
   }
+
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../public/fonts/Ubuntu-Regular.ttf")
+  }
+
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("../public/fonts/Ubuntu-Medium.ttf")
+  }
+
+  @font-face {
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("../public/fonts/Ubuntu-Bold.ttf")
+  }
+
   body {
     @apply bg-background text-foreground;
   }
