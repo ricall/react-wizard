@@ -6,6 +6,10 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      backgroundImage: {
+        'sidebar-desktop': 'url(/bg-sidebar-desktop.svg)',
+        'sidebar-mobile': 'url(/bg-sidebar-mobile.svg)',
+      },
       fontFamily: {
         sans: ['Ubuntu', ...defaultTheme.fontFamily.sans],
       },
