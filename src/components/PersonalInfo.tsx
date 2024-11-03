@@ -28,7 +28,7 @@ export const PersonalInfo = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col gap-4 py-8 px-14">
+      <div className="flex flex-col gap-4 py-8 px-14 h-full">
         <header className="flex flex-col gap-2">
           <div className="font-bold text-3xl">Personal info</div>
           <div className="text-secondary text-sm">Please provide your name, email address and phone number</div>
@@ -54,7 +54,7 @@ export const PersonalInfo = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 flex-1">
           <div className="flex flex-row text-sm">
             <Label className="text-xs">Phone Number</Label>
             {errors.phoneNumber && <Label className="flex-1 text-right text-red-500 font-bold">{errors.phoneNumber.message}</Label>}
@@ -66,9 +66,9 @@ export const PersonalInfo = () => {
           />
         </div>
 
-        <div className="flex flex-row justify-end gap-4">
-          <Button className="w-[5rem]" type="submit" variant="default">
-            Submit
+        <div className="flex flex-row justify-end gap-4 justify-self-end">
+          <Button className="w-[5rem]" type="submit" variant="primary" size="lg">
+            Next Step
           </Button>
         </div>
       </div>
