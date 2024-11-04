@@ -1,4 +1,4 @@
-import { DesktopWizard } from '@/components/DesktopWizard.tsx';
+import { DesktopWizard } from '@/components/wizard/DesktopWizard.tsx';
 
 function App() {
   return <DesktopWizard />;
