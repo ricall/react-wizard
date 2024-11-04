@@ -66,7 +66,7 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url("../public/fonts/Ubuntu-Regular.ttf")
+    src: url("/fonts/Ubuntu-Regular.ttf")
   }
 
   @font-face {
@@ -74,7 +74,7 @@
     font-style: normal;
     font-weight: 500;
     font-display: swap;
-    src: url("../public/fonts/Ubuntu-Medium.ttf")
+    src: url("/fonts/Ubuntu-Medium.ttf")
   }
 
   @font-face {
@@ -82,7 +82,7 @@
     font-style: normal;
     font-weight: 600;
     font-display: swap;
-    src: url("../public/fonts/Ubuntu-Bold.ttf")
+    src: url("/fonts/Ubuntu-Bold.ttf")
   }
 
   body {

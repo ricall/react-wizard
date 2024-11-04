@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils.ts';
-import { steps } from '@/components/wizard/steps.ts';
-import { useState } from 'react';
+import { Model, steps } from '@/components/onboarding-wizard/steps.ts';
+import { useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '@/components/ui/button.tsx';
@@ -24,14 +24,17 @@ export const Step = ({ index, label, selected }: StepProps) => {
   );
 };
 
-export const DesktopWizard = () => {
+export const OnboardingWizard = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const { name, description, schema, component: StepComponent } = steps[currentStep];
 
-  const methods = useForm({
+  const methods = useForm<Model>({
     resolver: yupResolver(schema as never),
     mode: 'onBlur',
+    defaultValues: {
+      yearlyBilling: false,
+    },
   });
   const { handleSubmit, trigger } = methods;
   const onNext = async () => {
@@ -44,6 +47,9 @@ export const DesktopWizard = () => {
   const onSubmit = (model: unknown) => {
     console.log('submit', model);
   };
+  const setPage = useCallback((page: number) => {
+    setCurrentStep(page - 1);
+  }, []);
 
   return (
     <div className="flex h-screen">
@@ -62,11 +68,11 @@ export const DesktopWizard = () => {
                 <div className="text-secondary text-sm">{description}</div>
               </header>
 
-              <StepComponent />
+              <StepComponent setPage={setPage} />
 
               <div className="flex flex-row">
                 {currentStep > 0 && (
-                  <Button className="w-[5rem]" type="button" variant="ghost" size="lg" onClick={onBack}>
+                  <Button className="w-[5rem] text-secondary" type="button" variant="ghost" size="lg" onClick={onBack}>
                     Go Back
                   </Button>
                 )}
@@ -78,7 +84,7 @@ export const DesktopWizard = () => {
                 )}
                 {currentStep === steps.length - 1 && (
                   <Button className="w-[5rem]" type="submit" variant="primary" size="lg">
-                    Submit
+                    Confirm
                   </Button>
                 )}
               </div>

@@ -1,50 +1,83 @@
-# React + TypeScript + Vite
+# react-wizard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project provides a simple onboarding wizard. It is based on the vite starter with the following additions:
+* tailwindcss for styling
+* react-hook-form for form based actions
+* yup for form validation
+* shadcn for simple react components that are used to build the form
 
-Currently, two official plugins are available:
+## Running the App [Start Here]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Ensure you are running node 20 
+```bash
+node --version
+```
+```text
+v20.18.0 
+```
+The app has been tested with node `20.18.0` but it may work with other versions
 
-## Expanding the ESLint configuration
+NOTE: The `.tool-versions` file can be used by `asdf` to ensure the correct node version is used.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Install all the dependencies
+```bash
+npm install
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Run the application
+```bash
+npm run dev
 ```
+```text
+  VITE v5.4.10  ready in 89 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+```
+
+The application should start up and be available on http://localhost:5173/
+
+### Other features
+
+#### Linting
+```bash
+npm run lint
+```
+
+#### Testing
+TODO: Add testing to project
+
+#### Prototyping
+TODO: Add Ladle to the project
+
+
+## Original Designs (from Frontend Mentor Community)
+Frontend Mentor has a number of free coding challenges. This project is based on `Multi-step form`
+
+### Active States
+
+![active-states-step-1.jpg](./design/active-states-step-1.jpg)
+![active-states-step-2.jpg](./design/active-states-step-2.jpg)
+![active-states-step-3.jpg](./design/active-states-step-3.jpg)
+![active-states-step-4.jpg](./design/active-states-step-4.jpg)
+
+### Desktop Design
+![desktop-design-step-1.jpg](design/desktop-design-step-1.jpg)
+![desktop-design-step-2-monthly.jpg](design/desktop-design-step-2-monthly.jpg)
+![desktop-design-step-2-yearly.jpg](design/desktop-design-step-2-yearly.jpg)
+![desktop-design-step-3-monthly.jpg](design/desktop-design-step-3-monthly.jpg)
+![desktop-design-step-3-yearly.jpg](design/desktop-design-step-3-yearly.jpg)
+![desktop-design-step-4-monthly.jpg](design/desktop-design-step-4-monthly.jpg)
+![desktop-design-step-4-yearly.jpg](design/desktop-design-step-4-yearly.jpg)
+
+#### TODO - Final State + Mobile
+![desktop-design-step-5.jpg](design/desktop-design-step-5.jpg)
+![mobile-design-step-1.jpg](design/mobile-design-step-1.jpg)
+![mobile-design-step-2-monthly.jpg](design/mobile-design-step-2-monthly.jpg)
+![mobile-design-step-2-yearly.jpg](design/mobile-design-step-2-yearly.jpg)
+![mobile-design-step-3-monthly.jpg](design/mobile-design-step-3-monthly.jpg)
+![mobile-design-step-3-yearly.jpg](design/mobile-design-step-3-yearly.jpg)
+![mobile-design-step-4-monthly.jpg](design/mobile-design-step-4-monthly.jpg)
+![mobile-design-step-4-yearly.jpg](design/mobile-design-step-4-yearly.jpg)
+![mobile-design-step-5.jpg](design/mobile-design-step-5.jpg)

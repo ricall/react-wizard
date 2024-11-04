@@ -5,8 +5,16 @@ import * as yup from 'yup';
 import 'yup-phone-lite';
 import { Switch } from '@/components/ui/switch.tsx';
 import { cn } from '@/lib/utils.ts';
-import { Plan, planDetails, plans } from '@/components/wizard/model.ts';
+import { Plan, planDetails, plans } from '@/components/onboarding-wizard/model.ts';
 import { Button } from '@/components/ui/button.tsx';
+
+export const schema = yup
+  .object({
+    plan: yup.string().oneOf(['ARCADE', 'ADVANCED', 'PRO'], 'Please select a plan').required('Please select a plan'),
+    yearlyBilling: yup.boolean().default(false),
+  })
+  .required();
+type Form = yup.InferType<typeof schema>;
 
 type PlanButtonProps = {
   plan: Plan;
@@ -36,15 +44,7 @@ export const PlanButton = ({ plan, selected, onChange }: PlanButtonProps) => {
   );
 };
 
-export const schema = yup
-  .object({
-    plan: yup.string().oneOf(['ARCADE', 'ADVANCED', 'PRO'], 'Please select a plan').required('Please select a plan'),
-    yearlyBilling: yup.boolean().default(false),
-  })
-  .required();
-type Form = yup.InferType<typeof schema>;
-
-export const SelectPlan = () => {
+export const SelectPlanPage = () => {
   const {
     watch,
     setValue,

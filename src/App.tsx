@@ -1,7 +1,7 @@
-import { DesktopWizard } from '@/components/wizard/DesktopWizard.tsx';
+import { OnboardingWizard } from '@/components/onboarding-wizard';
 
 function App() {
-  return <DesktopWizard />;
+  return <OnboardingWizard />;
 }
 
 export default App;

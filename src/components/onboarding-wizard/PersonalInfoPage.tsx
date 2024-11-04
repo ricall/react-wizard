@@ -14,7 +14,7 @@ export const schema = yup
   .required();
 type Form = yup.InferType<typeof schema>;
 
-export const PersonalInfo = () => {
+export const PersonalInfoPage = () => {
   const {
     register,
     formState: { errors },
