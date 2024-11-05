@@ -4,6 +4,7 @@ import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
 import eslintPluginPrettier from 'eslint-plugin-prettier/recommended';
+import tailwind from 'eslint-plugin-tailwindcss';
 
 export default tseslint
   .config(
@@ -25,4 +26,5 @@ export default tseslint
       },
     },
   )
-  .concat(eslintPluginPrettier);
+  .concat(eslintPluginPrettier)
+  .concat(tailwind.configs['flat/recommended']);

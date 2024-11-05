@@ -21,34 +21,34 @@ export const PersonalInfoPage = () => {
   } = useFormContext<Form>();
 
   return (
-    <div className="flex flex-col gap-4 grow">
+    <div className="flex grow flex-col gap-4">
       <div className="flex flex-col gap-1">
         <div className="flex flex-row text-sm">
           <Label className="text-xs">Name</Label>
-          {errors.name && <Label className="flex-1 text-right text-red-500 font-bold">{errors.name.message}</Label>}
+          {errors.name && <Label className="flex-1 text-right font-bold text-red-500">{errors.name.message}</Label>}
         </div>
-        <Input className="border border-black rounded px-2 w-full font-bold" placeholder="e.g. John Smith" {...register('name')} />
+        <Input className="w-full rounded border border-black px-2 font-bold" placeholder="e.g. John Smith" {...register('name')} />
       </div>
 
       <div className="flex flex-col gap-1">
         <div className="flex flex-row text-sm">
           <Label className="text-xs">Email Address</Label>
-          {errors.emailAddress && <Label className="flex-1 text-right text-red-500 font-bold">{errors.emailAddress.message}</Label>}
+          {errors.emailAddress && <Label className="flex-1 text-right font-bold text-red-500">{errors.emailAddress.message}</Label>}
         </div>
         <Input
-          className="border border-black rounded px-2 w-full font-bold"
+          className="w-full rounded border border-black px-2 font-bold"
           placeholder="e.g. john.smith@gmail.com"
           {...register('emailAddress')}
         />
       </div>
 
-      <div className="flex flex-col gap-1 flex-1">
+      <div className="flex flex-1 flex-col gap-1">
         <div className="flex flex-row text-sm">
           <Label className="text-xs">Phone Number</Label>
-          {errors.phoneNumber && <Label className="flex-1 text-right text-red-500 font-bold">{errors.phoneNumber.message}</Label>}
+          {errors.phoneNumber && <Label className="flex-1 text-right font-bold text-red-500">{errors.phoneNumber.message}</Label>}
         </div>
         <Input
-          className="border border-black rounded px-2 w-full font-bold"
+          className="w-full rounded border border-black px-2 font-bold"
           placeholder="e.g. +1 1 718 222 2222"
           {...register('phoneNumber')}
         />

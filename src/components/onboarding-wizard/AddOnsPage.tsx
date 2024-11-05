@@ -31,7 +31,7 @@ const AddOnButton = ({ addOn }: AddOnButtonProps) => {
   return (
     <div className={cn('flex flex-row gap-4 items-center w-full p-4 rounded-xl border', { 'border-blue-800 bg-gray-50': checked })}>
       <Checkbox className="data-[state=checked]:bg-blue-800" checked={checked} onCheckedChange={handleChange} />
-      <div className="flex flex-col gap-0 grow items-start">
+      <div className="flex grow flex-col items-start gap-0">
         <div className="text-sm">{name}</div>
         <div className="text-xs text-secondary">{description}</div>
       </div>
@@ -42,7 +42,7 @@ const AddOnButton = ({ addOn }: AddOnButtonProps) => {
 
 export const AddOnsPage = () => {
   return (
-    <div className="w-full flex flex-col gap-3 grow">
+    <div className="flex w-full grow flex-col gap-3">
       {addOns.map((addOn) => (
         <AddOnButton key={addOn} addOn={addOn} />
       ))}

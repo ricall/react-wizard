@@ -13,7 +13,7 @@ type StepProps = {
 };
 export const Step = ({ index, label, selected }: StepProps) => {
   return (
-    <div className="flex flex-row text-white text-sm gap-4 uppercase">
+    <div className="flex flex-row gap-4 text-sm uppercase text-white">
       <div className={cn('border border-white rounded-full w-8 h-8 text-center content-center', { 'bg-cyan-100 text-black': selected })}>
         {index}
       </div>
@@ -60,8 +60,8 @@ export const OnboardingWizard = ({ onSubmit }: Props) => {
 
   return (
     <div className="flex h-screen">
-      <div className="m-auto w-full max-w-[50rem] bg-background p-4 rounded-3xl flex flex-row gap-4 min-h-[30rem]">
-        <div className="bg-sidebar-desktop w-[14rem] h-auto rounded-xl bg-no-repeat bg-cover flex flex-col p-8 gap-6">
+      <div className="m-auto flex min-h-[30rem] w-full max-w-[50rem] flex-row gap-4 rounded-3xl bg-background p-4">
+        <div className="flex h-auto w-56 flex-col gap-6 rounded-xl bg-sidebar-desktop bg-cover bg-no-repeat p-8">
           {steps.map(({ name }, index) => (
             <Step key={name} index={index + 1} label={name} selected={index === currentStep} />
           ))}
@@ -69,30 +69,30 @@ export const OnboardingWizard = ({ onSubmit }: Props) => {
 
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onFormSubmitted)}>
-            <div className="flex flex-col gap-4 py-8 px-14 h-full w-[32rem]">
+            <div className="flex h-full w-[32rem] flex-col gap-4 px-14 py-8">
               {!isSubmitted && (
                 <>
                   <header className="flex flex-col gap-2">
-                    <div className="font-bold text-3xl">{name}</div>
-                    <div className="text-secondary text-sm">{description}</div>
+                    <div className="text-3xl font-bold">{name}</div>
+                    <div className="text-sm text-secondary">{description}</div>
                   </header>
 
                   <StepComponent setPage={setPage} />
 
                   <div className="flex flex-row">
                     {currentStep > 0 && (
-                      <Button className="w-[5rem] text-secondary" type="button" variant="ghost" size="lg" onClick={onBack}>
+                      <Button className="w-20 text-secondary" type="button" variant="ghost" size="lg" onClick={onBack}>
                         Go Back
                       </Button>
                     )}
                     <div className="grow" />
                     {currentStep < steps.length - 1 && (
-                      <Button className="w-[5rem]" type="button" variant="primary" size="lg" onClick={onNext}>
+                      <Button className="w-20" type="button" variant="primary" size="lg" onClick={onNext}>
                         Next Step
                       </Button>
                     )}
                     {currentStep === steps.length - 1 && (
-                      <Button className="w-[5rem]" type="submit" variant="primary" size="lg">
+                      <Button className="w-20" type="submit" variant="primary" size="lg">
                         Confirm
                       </Button>
                     )}

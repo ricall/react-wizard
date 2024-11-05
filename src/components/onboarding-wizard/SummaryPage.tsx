@@ -15,30 +15,30 @@ export const SummaryPage = ({ setPage }: PageProps) => {
   const total = addOnConfigs.reduce((total, addOnConfig) => total + costFor(addOnConfig), costFor(planConfig));
 
   return (
-    <div className="w-full h-full flex flex-col gap-6 text-secondary text-sm">
-      <div className="bg-gray-50 flex flex-col gap-4 p-4 rounded-2xl">
-        <div className="flex flex-row items-center w-full">
+    <div className="flex size-full flex-col gap-6 text-sm text-secondary">
+      <div className="flex flex-col gap-4 rounded-2xl bg-gray-50 p-4">
+        <div className="flex w-full flex-row items-center">
           <div>
-            <div className="text-blue-800 text-sm font-bold">
+            <div className="text-sm font-bold text-blue-800">
               {planName} ({yearlyBilling ? 'Yearly' : 'Monthly'})
             </div>
-            <Button className="text-xs underline p-0 my-0 h-auto" variant="ghost" onClick={onSelectPlan}>
+            <Button className="my-0 h-auto p-0 text-xs underline" variant="ghost" onClick={onSelectPlan}>
               Change
             </Button>
           </div>
-          <div className="grow text-right text-blue-800 font-bold">${formatCostFor(planConfig)}</div>
+          <div className="grow text-right font-bold text-blue-800">${formatCostFor(planConfig)}</div>
         </div>
         <hr />
         {addOnConfigs.map(({ name, ...addOnConfig }) => (
           <div key={name} className="flex flex-row">
             <div>{name}</div>
-            <div className="grow text-right text-blue-800/80 text-xs">+${formatCostFor(addOnConfig)}</div>
+            <div className="grow text-right text-xs text-blue-800/80">+${formatCostFor(addOnConfig)}</div>
           </div>
         ))}
       </div>
       <div className="flex flex-row px-4">
         <div>Total (per {yearlyBilling ? 'year' : 'month'})</div>
-        <div className="grow text-right text-blue-800 text-lg font-bold">${formatAmount(total)}</div>
+        <div className="grow text-right text-lg font-bold text-blue-800">${formatAmount(total)}</div>
       </div>
     </div>
   );
