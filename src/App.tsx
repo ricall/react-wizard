@@ -1,5 +1,4 @@
-import { OnboardingWizard } from '@/components/onboarding-wizard';
-import { Model } from '@/components/onboarding-wizard/steps';
+import { OnboardingWizard, Model } from '@/components/onboarding-wizard';
 import { useCallback } from 'react';
 
 function App() {
