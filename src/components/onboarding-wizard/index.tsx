@@ -4,6 +4,7 @@ import { useCallback, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '@/components/ui/button.tsx';
+import { SubmittedPage } from '@/components/onboarding-wizard/SubmittedPage.tsx';
 
 type StepProps = {
   index: number;
@@ -24,19 +25,21 @@ export const Step = ({ index, label, selected }: StepProps) => {
   );
 };
 
-export const OnboardingWizard = () => {
+type Props = {
+  onSubmit: (model: Model) => Promise<void>;
+};
+export const OnboardingWizard = ({ onSubmit }: Props) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { name, description, schema, component: StepComponent } = steps[currentStep];
-
   const methods = useForm<Model>({
     resolver: yupResolver(schema as never),
     mode: 'onBlur',
-    defaultValues: {
-      yearlyBilling: false,
-    },
   });
   const { handleSubmit, trigger } = methods;
+
+  const setPage = useCallback((page: number) => setCurrentStep(page - 1), []);
   const onNext = async () => {
     const valid = await trigger();
     if (valid) {
@@ -44,12 +47,16 @@ export const OnboardingWizard = () => {
     }
   };
   const onBack = () => setCurrentStep((prev) => prev - 1);
-  const onSubmit = (model: unknown) => {
-    console.log('submit', model);
+  const onFormSubmitted = async (model: Partial<Model>) => {
+    setIsSubmitted(true);
+
+    await onSubmit(model as Model);
+
+    // The form should be closed - for now we just restart it
+    methods.reset();
+    setCurrentStep(0);
+    setIsSubmitted(false);
   };
-  const setPage = useCallback((page: number) => {
-    setCurrentStep(page - 1);
-  }, []);
 
   return (
     <div className="flex h-screen">
@@ -61,33 +68,39 @@ export const OnboardingWizard = () => {
         </div>
 
         <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form onSubmit={handleSubmit(onFormSubmitted)}>
             <div className="flex flex-col gap-4 py-8 px-14 h-full w-[32rem]">
-              <header className="flex flex-col gap-2">
-                <div className="font-bold text-3xl">{name}</div>
-                <div className="text-secondary text-sm">{description}</div>
-              </header>
+              {!isSubmitted && (
+                <>
+                  <header className="flex flex-col gap-2">
+                    <div className="font-bold text-3xl">{name}</div>
+                    <div className="text-secondary text-sm">{description}</div>
+                  </header>
 
-              <StepComponent setPage={setPage} />
+                  <StepComponent setPage={setPage} />
 
-              <div className="flex flex-row">
-                {currentStep > 0 && (
-                  <Button className="w-[5rem] text-secondary" type="button" variant="ghost" size="lg" onClick={onBack}>
-                    Go Back
-                  </Button>
-                )}
-                <div className="grow" />
-                {currentStep < steps.length - 1 && (
-                  <Button className="w-[5rem]" type="button" variant="primary" size="lg" onClick={onNext}>
-                    Next Step
-                  </Button>
-                )}
-                {currentStep === steps.length - 1 && (
-                  <Button className="w-[5rem]" type="submit" variant="primary" size="lg">
-                    Confirm
-                  </Button>
-                )}
-              </div>
+                  <div className="flex flex-row">
+                    {currentStep > 0 && (
+                      <Button className="w-[5rem] text-secondary" type="button" variant="ghost" size="lg" onClick={onBack}>
+                        Go Back
+                      </Button>
+                    )}
+                    <div className="grow" />
+                    {currentStep < steps.length - 1 && (
+                      <Button className="w-[5rem]" type="button" variant="primary" size="lg" onClick={onNext}>
+                        Next Step
+                      </Button>
+                    )}
+                    {currentStep === steps.length - 1 && (
+                      <Button className="w-[5rem]" type="submit" variant="primary" size="lg">
+                        Confirm
+                      </Button>
+                    )}
+                  </div>
+                </>
+              )}
+
+              {isSubmitted && <SubmittedPage />}
             </div>
           </form>
         </FormProvider>

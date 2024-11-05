@@ -71,7 +71,14 @@ export const addOnDetails: Record<AddOn, AddOnDetails> = {
   },
 };
 
-export type ChargeType = 'MONTHLY' | 'YEARLY';
-export const costFor = (type: ChargeType, { yearlyCost, monthlyCost }: RecurringCost) => (type === 'MONTHLY' ? monthlyCost : yearlyCost);
-export const formatAmount = (type: ChargeType, amount: number) => (type === 'MONTHLY' ? `${amount}/mo` : `${amount}/yr`);
-export const formatCostFor = (type: ChargeType, cost: RecurringCost) => formatAmount(type, costFor(type, cost));
+export const calculatorFor = (yearlyBilling: boolean) => {
+  const costFor = ({ yearlyCost, monthlyCost }: RecurringCost) => (yearlyBilling ? yearlyCost : monthlyCost);
+  const formatAmount = (amount: number) => `${amount}/${yearlyBilling ? 'yr' : 'mo'}`;
+  const formatCostFor = (cost: RecurringCost) => formatAmount(costFor(cost));
+
+  return {
+    costFor,
+    formatAmount,
+    formatCostFor,
+  };
+};
