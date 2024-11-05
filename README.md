@@ -70,9 +70,9 @@ Frontend Mentor has a number of free coding challenges. This project is based on
 ![desktop-design-step-3-yearly.jpg](design/desktop-design-step-3-yearly.jpg)
 ![desktop-design-step-4-monthly.jpg](design/desktop-design-step-4-monthly.jpg)
 ![desktop-design-step-4-yearly.jpg](design/desktop-design-step-4-yearly.jpg)
-
-#### TODO - Final State + Mobile
 ![desktop-design-step-5.jpg](design/desktop-design-step-5.jpg)
+
+#### TODO - Mobile
 ![mobile-design-step-1.jpg](design/mobile-design-step-1.jpg)
 ![mobile-design-step-2-monthly.jpg](design/mobile-design-step-2-monthly.jpg)
 ![mobile-design-step-2-yearly.jpg](design/mobile-design-step-2-yearly.jpg)

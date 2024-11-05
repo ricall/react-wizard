@@ -59,17 +59,17 @@ export const OnboardingWizard = ({ onSubmit }: Props) => {
   };
 
   return (
-    <div className="flex h-screen">
-      <div className="m-auto flex min-h-[30rem] w-full max-w-[50rem] flex-row gap-4 rounded-3xl bg-background p-4">
-        <div className="flex h-auto w-56 flex-col gap-6 rounded-xl bg-sidebar-desktop bg-cover bg-no-repeat p-8">
-          {steps.map(({ name }, index) => (
-            <Step key={name} index={index + 1} label={name} selected={index === currentStep} />
-          ))}
-        </div>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onFormSubmitted)}>
+        <div className="flex h-screen">
+          <div className="m-auto flex min-h-[30rem] w-full max-w-[50rem] flex-row gap-4 rounded-3xl bg-background p-4">
+            <div className="flex h-auto w-56 flex-col gap-6 rounded-xl bg-sidebar-desktop bg-cover bg-no-repeat p-8">
+              {steps.map(({ name }, index) => (
+                <Step key={name} index={index + 1} label={name} selected={index === currentStep} />
+              ))}
+            </div>
 
-        <FormProvider {...methods}>
-          <form onSubmit={handleSubmit(onFormSubmitted)}>
-            <div className="flex h-full w-[32rem] flex-col gap-4 px-14 py-8">
+            <div className="flex h-auto w-full grow flex-col gap-4 py-8 sm:px-14">
               {!isSubmitted && (
                 <>
                   <header className="flex flex-col gap-2">
@@ -102,9 +102,9 @@ export const OnboardingWizard = ({ onSubmit }: Props) => {
 
               {isSubmitted && <SubmittedPage />}
             </div>
-          </form>
-        </FormProvider>
-      </div>
-    </div>
+          </div>
+        </div>
+      </form>
+    </FormProvider>
   );
 };
