@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form';
 
 import * as yup from 'yup';
 import 'yup-phone-lite';
+import { cn } from '@/lib/utils.ts';
 
 export const schema = yup
   .object({
@@ -21,13 +22,19 @@ export const PersonalInfoPage = () => {
   } = useFormContext<Form>();
 
   return (
-    <div className="flex grow flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <div className="flex flex-col gap-1">
         <div className="flex flex-row text-sm">
           <Label className="text-xs">Name</Label>
           {errors.name && <Label className="flex-1 text-right font-bold text-red-500">{errors.name.message}</Label>}
         </div>
-        <Input className="w-full rounded border border-black px-2 font-bold" placeholder="e.g. John Smith" {...register('name')} />
+        <Input
+          className={cn('w-full rounded border border-secondary px-2 font-bold', {
+            'border-red-500 focus-visible:ring-red-500': errors.name,
+          })}
+          placeholder="e.g. Stephen King"
+          {...register('name')}
+        />
       </div>
 
       <div className="flex flex-col gap-1">
@@ -36,8 +43,10 @@ export const PersonalInfoPage = () => {
           {errors.emailAddress && <Label className="flex-1 text-right font-bold text-red-500">{errors.emailAddress.message}</Label>}
         </div>
         <Input
-          className="w-full rounded border border-black px-2 font-bold"
-          placeholder="e.g. john.smith@gmail.com"
+          className={cn('w-full rounded border border-secondary px-2 font-bold', {
+            'border-red-500 focus-visible:ring-red-500': errors.emailAddress,
+          })}
+          placeholder="e.g. stephenking@lorem.com"
           {...register('emailAddress')}
         />
       </div>
@@ -48,7 +57,9 @@ export const PersonalInfoPage = () => {
           {errors.phoneNumber && <Label className="flex-1 text-right font-bold text-red-500">{errors.phoneNumber.message}</Label>}
         </div>
         <Input
-          className="w-full rounded border border-black px-2 font-bold"
+          className={cn('w-full rounded border border-secondary px-2 font-bold', {
+            'border-red-500 focus-visible:ring-red-500': errors.phoneNumber,
+          })}
           placeholder="e.g. +1 1 718 222 2222"
           {...register('phoneNumber')}
         />

@@ -12,25 +12,29 @@ export type Model = yup.InferType<typeof personalInfoSchema> &
 
 export const steps: Step<Model>[] = [
   {
-    name: 'Your Info',
+    name: 'Personal info',
+    stepName: 'Your Info',
     description: 'Please provide your name, email address and phone number',
     schema: personalInfoSchema,
     component: PersonalInfoPage,
   },
   {
-    name: 'Select Plan',
+    name: 'Select your plan',
+    stepName: 'Select Plan',
     description: 'You have the option of monthly or yearly billing',
     schema: selectPlanSchema,
     component: SelectPlanPage,
   },
   {
-    name: 'Add-ons',
+    name: 'Pick add-ons',
+    stepName: 'Add-Ons',
     description: 'Add-ons help enhance your gaming experience',
     schema: pickAddOnsSchema,
     component: AddOnsPage,
   },
   {
-    name: 'Summary',
+    name: 'Finishing up',
+    stepName: 'Summary',
     description: 'Double-check everything looks OK before confirming',
     schema: selectPlanSchema.concat(pickAddOnsSchema),
     component: SummaryPage,

@@ -29,13 +29,13 @@ const AddOnButton = ({ addOn }: AddOnButtonProps) => {
     setValue('addOns', state === true ? [...values, addOn] : values.filter((value) => value !== addOn));
 
   return (
-    <div className={cn('flex flex-row gap-4 items-center w-full p-4 rounded-xl border', { 'border-blue-800 bg-gray-50': checked })}>
+    <div className={cn('flex flex-row gap-4 items-center w-full px-4 py-3 rounded-xl border', { 'border-blue-800 bg-gray-50': checked })}>
       <Checkbox className="data-[state=checked]:bg-blue-800" checked={checked} onCheckedChange={handleChange} />
       <div className="flex grow flex-col items-start gap-0">
-        <div className="text-sm">{name}</div>
+        <div className="text-sm font-bold">{name}</div>
         <div className="text-xs text-secondary">{description}</div>
       </div>
-      <div className="text-blue-800">+${formatCostFor(addOnDetail)}</div>
+      <div className="text-sm text-blue-800">+${formatCostFor(addOnDetail)}</div>
     </div>
   );
 };

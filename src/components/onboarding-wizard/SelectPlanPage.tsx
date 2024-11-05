@@ -22,7 +22,7 @@ type PlanButtonProps = {
   onChange: (value: Plan) => void;
 };
 export const PlanButton = ({ plan, selected, onChange }: PlanButtonProps) => {
-  const { name, icon: Icon, monthlyCost, yearlyCost } = planDetails[plan];
+  const { name, icon: Icon, monthlyCost, yearlyCost, yearlyBonus } = planDetails[plan];
   const { watch } = useFormContext<Form>();
   const yearlyBilling = watch('yearlyBilling');
   const cost = yearlyBilling ? `${yearlyCost}/yr` : `${monthlyCost}/mo`;
@@ -31,15 +31,18 @@ export const PlanButton = ({ plan, selected, onChange }: PlanButtonProps) => {
     <Button
       type="button"
       variant="outline"
-      className={cn('min-h-[8rem] w-full flex flex-col gap-0 items-start justify-start rounded-xl p-3', {
+      className={cn('h-auto md:h-[9rem] w-full flex flex-row md:flex-col gap-4 items-start justify-start rounded-xl p-4', {
         'bg-blue-800 text-white hover:text-white hover:bg-blue-800/80': selected,
       })}
       onClick={() => onChange(plan)}
     >
-      <Icon className="min-h-8 min-w-8" />
-      <div className="grow" />
-      <div>{name}</div>
-      <div className="text-secondary">${cost}</div>
+      <Icon className="min-h-9 min-w-9" />
+      <div className="flex h-full flex-col items-start">
+        <div className="md:grow" />
+        <div>{name}</div>
+        <div className="text-secondary">${cost}</div>
+        {yearlyBilling && <div className={cn('text-xs', selected ? 'text-white' : 'text-blue-800/80')}>{yearlyBonus}</div>}
+      </div>
     </Button>
   );
 };
@@ -58,7 +61,7 @@ export const SelectPlanPage = () => {
     <div className="flex grow flex-col gap-4">
       <div className="flex flex-col gap-1">
         {errors.plan && <Label className="flex-1 text-right font-bold text-red-500">{errors.plan.message}</Label>}
-        <div className="flex flex-row justify-evenly gap-4">
+        <div className="flex flex-col justify-evenly gap-4 md:flex-row">
           {plans.map((plan) => (
             <PlanButton key={plan} plan={plan} selected={plan === currentPlan} onChange={handleOnPlanButtonChange} />
           ))}
@@ -67,7 +70,7 @@ export const SelectPlanPage = () => {
 
       <div className="flex w-full justify-center bg-gray-100 py-3">
         <div className="flex flex-row gap-6 align-baseline">
-          <Label className={cn('text-xs font-bold', { 'text-secondary': yearlyBilling })}>Monthly</Label>
+          <Label className={cn('text-xs font-bold text-blue-800', { 'text-secondary': yearlyBilling })}>Monthly</Label>
           <Controller
             name="yearlyBilling"
             render={({ field: { value, onChange } }) => (
@@ -78,7 +81,7 @@ export const SelectPlanPage = () => {
               />
             )}
           />
-          <Label className={cn('text-xs font-bold', { 'text-secondary': !yearlyBilling })}>Yearly</Label>
+          <Label className={cn('text-xs font-bold text-blue-800', { 'text-secondary': !yearlyBilling })}>Yearly</Label>
         </div>
       </div>
     </div>

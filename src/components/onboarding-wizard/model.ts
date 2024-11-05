@@ -5,6 +5,7 @@ import { IconAdvanced, IconArcade, IconPro } from '@/icons';
 export type PageProps = { setPage?: (page: number) => void };
 export type Step<T> = {
   name: string;
+  stepName: string;
   description: string;
   schema: Schema<Partial<T>>;
   component: ComponentType<PageProps>;
@@ -21,6 +22,7 @@ export type Plan = (typeof plans)[number];
 export type PlanDetails = RecurringCost & {
   name: string;
   icon: typeof IconAdvanced;
+  yearlyBonus: string;
 };
 export const planDetails: Record<Plan, PlanDetails> = {
   ARCADE: {
@@ -28,18 +30,21 @@ export const planDetails: Record<Plan, PlanDetails> = {
     icon: IconArcade,
     monthlyCost: 9,
     yearlyCost: 90,
+    yearlyBonus: '2 months free',
   },
   ADVANCED: {
     name: 'Advanced',
     icon: IconAdvanced,
     monthlyCost: 12,
     yearlyCost: 120,
+    yearlyBonus: '2 months free',
   },
   PRO: {
     name: 'Pro',
     icon: IconPro,
     monthlyCost: 15,
     yearlyCost: 150,
+    yearlyBonus: '2 months free',
   },
 };
 
