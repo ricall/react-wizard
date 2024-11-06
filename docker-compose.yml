@@ -1,0 +1,11 @@
+services:
+  nodejs:
+    build:
+      dockerfile: Dockerfile
+    container_name: react-wizard
+    restart: no
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules
