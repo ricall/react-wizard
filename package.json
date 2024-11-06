@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --fix",
+    "ci:lint": "eslint .",
     "test": "vitest",
+    "ci:test": "vitest run",
+    "ci": "npm run ci:lint && npm run ci:test",
     "coverage": "vitest --coverage",
     "preview": "vite preview"
   },
@@ -52,6 +55,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "eslint-plugin-tailwindcss": "^3.17.5",
     "globals": "^15.11.0",
+    "husky": "^4.3.8",
     "jsdom": "^25.0.1",
     "postcss": "^8.4.47",
     "prettier": "3.3.3",
@@ -61,5 +65,8 @@
     "vite": "^5.4.10",
     "vite-plugin-svgr": "^4.3.0",
     "vitest": "^2.1.4"
+  },
+  "hooks": {
+    "pre-commit": "npm run ci"
   }
 }
