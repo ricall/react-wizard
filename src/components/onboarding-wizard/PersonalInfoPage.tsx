@@ -26,7 +26,7 @@ export const PersonalInfoPage = () => {
       <div className="flex flex-col gap-1">
         <div className="flex flex-row text-sm">
           <Label className="text-xs">Name</Label>
-          {errors.name && <Label className="flex-1 text-right font-bold text-red-500">{errors.name.message}</Label>}
+          {errors.name && <Label className="flex-1 text-right text-xs font-bold text-red-500">{errors.name.message}</Label>}
         </div>
         <Input
           className={cn('w-full rounded border border-secondary px-2 font-bold', {
@@ -40,7 +40,7 @@ export const PersonalInfoPage = () => {
       <div className="flex flex-col gap-1">
         <div className="flex flex-row text-sm">
           <Label className="text-xs">Email Address</Label>
-          {errors.emailAddress && <Label className="flex-1 text-right font-bold text-red-500">{errors.emailAddress.message}</Label>}
+          {errors.emailAddress && <Label className="flex-1 text-right text-xs font-bold text-red-500">{errors.emailAddress.message}</Label>}
         </div>
         <Input
           className={cn('w-full rounded border border-secondary px-2 font-bold', {
@@ -54,7 +54,7 @@ export const PersonalInfoPage = () => {
       <div className="flex flex-1 flex-col gap-1">
         <div className="flex flex-row text-sm">
           <Label className="text-xs">Phone Number</Label>
-          {errors.phoneNumber && <Label className="flex-1 text-right font-bold text-red-500">{errors.phoneNumber.message}</Label>}
+          {errors.phoneNumber && <Label className="flex-1 text-right text-xs font-bold text-red-500">{errors.phoneNumber.message}</Label>}
         </div>
         <Input
           className={cn('w-full rounded border border-secondary px-2 font-bold', {

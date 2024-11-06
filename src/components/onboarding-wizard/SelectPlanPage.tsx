@@ -60,7 +60,7 @@ export const SelectPlanPage = () => {
   return (
     <div className="flex grow flex-col gap-4">
       <div className="flex flex-col gap-1">
-        {errors.plan && <Label className="flex-1 text-right font-bold text-red-500">{errors.plan.message}</Label>}
+        {errors.plan && <Label className="flex-1 text-right text-xs font-bold text-red-500">{errors.plan.message}</Label>}
         <div className="flex flex-col justify-evenly gap-4 md:flex-row">
           {plans.map((plan) => (
             <PlanButton key={plan} plan={plan} selected={plan === currentPlan} onChange={handleOnPlanButtonChange} />
