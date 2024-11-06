@@ -1,0 +1,64 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`PersonalInfoPage > should render as expected 1`] = `
+<DocumentFragment>
+  <div
+    class="flex flex-col gap-4"
+  >
+    <div
+      class="flex flex-col gap-1"
+    >
+      <div
+        class="flex flex-row text-sm"
+      >
+        <label
+          class="text-xs"
+        >
+          Name
+        </label>
+      </div>
+      <input
+        class="flex h-9 bg-transparent py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 w-full rounded border border-secondary px-2 font-bold"
+        name="name"
+        placeholder="e.g. Stephen King"
+      />
+    </div>
+    <div
+      class="flex flex-col gap-1"
+    >
+      <div
+        class="flex flex-row text-sm"
+      >
+        <label
+          class="text-xs"
+        >
+          Email Address
+        </label>
+      </div>
+      <input
+        class="flex h-9 bg-transparent py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 w-full rounded border border-secondary px-2 font-bold"
+        name="emailAddress"
+        placeholder="e.g. stephenking@lorem.com"
+      />
+    </div>
+    <div
+      class="flex flex-1 flex-col gap-1"
+    >
+      <div
+        class="flex flex-row text-sm"
+      >
+        <label
+          class="text-xs"
+        >
+          Phone Number
+        </label>
+      </div>
+      <input
+        class="flex h-9 bg-transparent py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 w-full rounded border border-secondary px-2 font-bold"
+        name="phoneNumber"
+        placeholder="e.g. +1 1 718 222 2222"
+      />
+    </div>
+  </div>
+</DocumentFragment>
+`;

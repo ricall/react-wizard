@@ -10,7 +10,7 @@ export const schema = yup
   .object({
     name: yup.string().required('This field is required'),
     emailAddress: yup.string().email('This field is not a valid email').required('This field is required'),
-    phoneNumber: yup.string().phone('in').required('This field is required'),
+    phoneNumber: yup.string().phone('in', 'This field is not a valid phone number').required('This field is required'),
   })
   .required();
 type Form = yup.InferType<typeof schema>;
